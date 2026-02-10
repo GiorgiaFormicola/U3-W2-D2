@@ -5,22 +5,20 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import CommentArea from "./CommentArea";
+import scifiBooksList from "../data/scifi.json";
+import fantasyBooksList from "../data/fantasy.json";
+import historyBooksList from "../data/history.json";
+import horrorBooksList from "../data/horror.json";
+import romanceBooksList from "../data/romance.json";
+import GenreChoice from "./GenreChoice";
 
-const BookList = function (props) {
+const arrayOfGenres = [fantasyBooksList, historyBooksList, horrorBooksList, romanceBooksList, scifiBooksList];
+
+const BookList = function () {
   const [searchValue, setSearchValue] = useState("");
   const [selectedBookID, setSelectedBookID] = useState(null);
   const [selectedBookTitle, setSelectedBookTitle] = useState(null);
-
-  // setSelectedBookID = (selectedID) => {
-  //   this.setState({
-  //     selectedBookID: selectedID,
-  //   });
-  // };
-  // setSelectedBookTitle = (selectedTitle) => {
-  //   this.setState({
-  //     selectedBookTitle: selectedTitle,
-  //   });
-  // };
+  const [selectedGenre, setSelectedGenre] = useState(arrayOfGenres[0]);
 
   return (
     <>
@@ -28,6 +26,12 @@ const BookList = function (props) {
         <Row>
           <Col xs={7} className="ps-5">
             <Row className="justify-content-center">
+              <GenreChoice
+                setSelectedGenre={setSelectedGenre}
+                setSelectedBookID={setSelectedBookID}
+                setSelectedBookTitle={setSelectedBookTitle}
+                genresData={arrayOfGenres}
+              ></GenreChoice>
               <Col className="col-12 px-0">
                 <Form>
                   <Form.Control
@@ -41,10 +45,10 @@ const BookList = function (props) {
                 </Form>
               </Col>
               <Row className="justify-content-center g-4 bg-secondary rounded-4 pb-4">
-                {props.booksList.filter((b) => b.title.toLowerCase().includes(searchValue)).length === 0 ? (
+                {selectedGenre.filter((b) => b.title.toLowerCase().includes(searchValue)).length === 0 ? (
                   <p className="mb-0 text-center text-light">We're sorry, no books matching your search!</p>
                 ) : (
-                  props.booksList
+                  selectedGenre
                     .filter((b) => b.title.toLowerCase().includes(searchValue))
                     .map((book) => {
                       return (
