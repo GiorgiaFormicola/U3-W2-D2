@@ -7,19 +7,15 @@ const key =
 
 const AddComment = function (props) {
   const [newComment, setNewComment] = useState({
-    newComment: {
-      comment: "",
-      rate: "1",
-      elementId: props.bookID,
-    },
+    comment: "",
+    rate: "1",
+    elementId: props.bookID,
   });
 
   useEffect(() => {
     setNewComment({
-      newComment: {
-        ...newComment,
-        elementId: props.bookID,
-      },
+      ...newComment,
+      elementId: props.bookID,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.bookID]);
@@ -42,11 +38,9 @@ const AddComment = function (props) {
               alert("New comment saved!");
 
               setNewComment({
-                newComment: {
-                  comment: "",
-                  rate: "1",
-                  elementId: props.bookID,
-                },
+                comment: "",
+                rate: "1",
+                elementId: props.bookID,
               });
               props.getComments();
             } else {
@@ -70,10 +64,8 @@ const AddComment = function (props) {
           value={newComment.comment}
           onChange={(e) => {
             setNewComment({
-              newComment: {
-                ...newComment,
-                comment: e.target.value,
-              },
+              ...newComment,
+              comment: e.target.value,
             });
           }}
         />
@@ -86,10 +78,8 @@ const AddComment = function (props) {
           value={newComment.rate}
           onChange={(e) => {
             setNewComment({
-              newComment: {
-                ...newComment,
-                rate: e.target.value,
-              },
+              ...newComment,
+              rate: e.target.value,
             });
           }}
         >

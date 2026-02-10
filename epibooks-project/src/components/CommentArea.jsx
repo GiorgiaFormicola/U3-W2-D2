@@ -43,7 +43,7 @@ const CommentArea = function (props) {
           <h4 className="text-light text-center pt-3" style={{ marginTop: "0.55em", marginBottom: "1.25em" }}>
             {props.bookTitle}
           </h4>
-          <CommentList commentsArray={commentsArray}></CommentList>
+          <CommentList commentsArray={commentsArray} getComments={getComments}></CommentList>
           <AddComment bookID={props.bookID} getComments={getComments}></AddComment>
         </>
       )}

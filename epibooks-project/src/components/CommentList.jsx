@@ -6,7 +6,15 @@ const CommentList = function (props) {
     <>
       <ListGroup variant="flush" data-bs-theme="dark" className="border-top border-bottom border-1 mt-4">
         {props.commentsArray.map((comment) => {
-          return <SingleComment key={comment._id} commentText={comment.comment} commentRate={comment.rate}></SingleComment>;
+          return (
+            <SingleComment
+              key={comment._id}
+              commentID={comment._id}
+              commentText={comment.comment}
+              commentRate={comment.rate}
+              getComments={props.getComments}
+            ></SingleComment>
+          );
         })}
       </ListGroup>
     </>
