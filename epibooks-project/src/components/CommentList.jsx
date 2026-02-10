@@ -1,4 +1,3 @@
-import { Component } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import SingleComment from "./SingleComment";
 
